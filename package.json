@@ -1,0 +1,32 @@
+{
+	"name": "blog-app",
+	"version": "1.0.0",
+	"description": "Blog app",
+	"main": "server.js",
+	"type": "module",
+	"scripts": {
+		"start": "node server.js",
+		"server": "nodemon server.js",
+		"client": "cd client && pnpm run dev",
+		"dev": "concurrently \"pnpm run server\" \"pnpm run client\""
+	},
+	"keywords": [],
+	"author": "RajaMahanty",
+	"license": "ISC",
+	"packageManager": "pnpm@10.8.0",
+	"dependencies": {
+		"@reduxjs/toolkit": "^2.6.1",
+		"bcryptjs": "^3.0.2",
+		"concurrently": "^9.1.2",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.7",
+		"express": "^5.1.0",
+		"mongoose": "^8.13.2",
+		"react-redux": "^9.2.0"
+	},
+	"devDependencies": {
+		"colors": "^1.4.0",
+		"morgan": "^1.10.0",
+		"nodemon": "^3.1.9"
+	}
+}

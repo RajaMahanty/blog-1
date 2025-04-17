@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../redux/store";
-
-// toast
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const StyledBox = styled(Box)(({ theme }) => ({
 	maxWidth: 450,
@@ -58,28 +55,15 @@ const Login = () => {
 			if (data.success) {
 				localStorage.setItem("userId", data?.user._id);
 				dispatch(authActions.login());
-				toast.success("Logged in successfully!", {
-					position: "top-right",
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: false,
-					draggable: true,
-				});
+				toast.success("Logged in successfully!");
 				navigate("/");
 			}
 		} catch (error) {
 			console.log(error);
-			toast.error("Login failed. Please check your credentials.", {
-				position: "top-right",
-				autoClose: 3000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: false,
-				draggable: true,
-			});
+			toast.error("Login failed. Please check your credentials.");
 		}
 	};
+
 	return (
 		<>
 			<form onSubmit={handleSubmit}>
@@ -116,19 +100,19 @@ const Login = () => {
 						type="submit"
 						variant="contained"
 						color="primary"
-						sx={{ borderRadius: 3, marginTop: 3 }}
+						fullWidth
 					>
-						Submit
+						Login
 					</StyledButton>
 					<StyledButton
 						onClick={() => navigate("/register")}
-						sx={{ borderRadius: 3, marginTop: 3 }}
+						variant="text"
+						fullWidth
 					>
 						Don't have an account? Register
 					</StyledButton>
 				</StyledBox>
 			</form>
-			<ToastContainer />
 		</>
 	);
 };

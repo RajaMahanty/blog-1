@@ -15,7 +15,7 @@ import { authActions } from "../redux/store";
 
 // toast
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const Header = () => {
 	// global state

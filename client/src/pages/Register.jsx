@@ -1,11 +1,28 @@
 import React, { useState } from "react";
-import { Box, Typography, TextField, Button } from "@mui/material";
+import { Box, Typography, TextField, Button, styled } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
-// toast
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/ReactToastify.css";
+const StyledBox = styled(Box)(({ theme }) => ({
+	maxWidth: 450,
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	margin: "auto",
+	marginTop: theme.spacing(5),
+	boxShadow: "10px 10px 20px #ccc",
+	padding: theme.spacing(3),
+	borderRadius: 5,
+	backgroundColor: "#f9f9f9",
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+	borderRadius: 3,
+	marginTop: theme.spacing(3),
+	textTransform: "none",
+	fontWeight: "bold",
+}));
 
 const Register = () => {
 	const navigate = useNavigate();
@@ -35,36 +52,21 @@ const Register = () => {
 			});
 
 			if (data.success) {
-				toast.success("Registered successfully!", {
-					position: "top-right",
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: false,
-					draggable: true,
-				});
+				toast.success("Registered successfully!");
 				navigate("/login");
 			}
 		} catch (error) {
 			console.log(error);
+			toast.error("Registration failed. Please try again.");
 		}
 	};
+
 	return (
 		<>
 			<form onSubmit={handleSubmit}>
-				<Box
-					maxWidth={450}
-					display={"flex"}
-					flexDirection={"column"}
-					alignItems={"center"}
-					margin={"auto"}
-					marginTop={5}
-					boxShadow={"10px 10px 20px #ccc"}
-					padding={3}
-					borderRadius={5}
-				>
+				<StyledBox>
 					<Typography
-						sx={{ textTransform: "uppercase" }}
+						sx={{ textTransform: "uppercase", color: "#333" }}
 						variant="h4"
 						padding={3}
 						textAlign={"center"}
@@ -72,47 +74,51 @@ const Register = () => {
 						Register
 					</Typography>
 					<TextField
-						placeholder="name"
+						placeholder="Name"
 						value={inputs.name}
 						name="name"
 						margin="normal"
 						type="text"
 						required
 						onChange={handleChange}
+						fullWidth
 					/>
 					<TextField
-						placeholder="email"
+						placeholder="Email"
 						value={inputs.email}
 						name="email"
 						margin="normal"
 						type="email"
 						required
 						onChange={handleChange}
+						fullWidth
 					/>
 					<TextField
-						placeholder="password"
+						placeholder="Password"
 						value={inputs.password}
 						name="password"
 						margin="normal"
 						type="password"
 						required
 						onChange={handleChange}
+						fullWidth
 					/>
-					<Button
+					<StyledButton
 						type="submit"
 						variant="contained"
 						color="primary"
-						sx={{ borderRadius: 3, marginTop: 3 }}
+						fullWidth
 					>
-						Submit
-					</Button>
-					<Button
+						Register
+					</StyledButton>
+					<StyledButton
 						onClick={() => navigate("/login")}
-						sx={{ borderRadius: 3, marginTop: 3 }}
+						variant="text"
+						fullWidth
 					>
 						Already Registered? Please Login
-					</Button>
-				</Box>
+					</StyledButton>
+				</StyledBox>
 			</form>
 		</>
 	);

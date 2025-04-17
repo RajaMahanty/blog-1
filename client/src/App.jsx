@@ -5,8 +5,11 @@ import Blogs from "./pages/Blogs";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserBlogs from "./pages/UserBlogs";
-import { ToastContainer } from "react-toastify";
 import axios from "axios";
+
+// toast
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Configuring base URL
 axios.defaults.baseURL = "http://localhost:8080/api/v1";
@@ -22,7 +25,18 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 			</Routes>
-			<ToastContainer />
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={true}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover={false}
+				theme="light"
+			/>
 		</>
 	);
 }

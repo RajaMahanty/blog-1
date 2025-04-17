@@ -25,10 +25,12 @@ const CreateBlog = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			const user = localStorage.getItem("userId");
 			const { data } = await axios.post("/blogs/create-blog", {
 				title: inputs.title,
 				description: inputs.description,
 				image: inputs.image,
+				user: user,
 			});
 
 			if (data?.success) {
@@ -36,6 +38,7 @@ const CreateBlog = () => {
 				navigate("/my-blogs");
 			}
 		} catch (error) {
+			toast.error("Error Occured Creating Blog!");
 			console.log(error);
 		}
 	};

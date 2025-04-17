@@ -21,10 +21,7 @@ const Header = () => {
 	// global state
 	const isLogin = useSelector((state) => state.isLogin);
 	const dispatch = useDispatch();
-
 	const navigate = useNavigate();
-
-	// state
 	const [value, setValue] = useState();
 
 	// handle logout
@@ -45,40 +42,104 @@ const Header = () => {
 			console.log(error);
 		}
 	};
+
 	return (
 		<>
-			<AppBar position="sticky">
+			<AppBar
+				position="sticky"
+				sx={{
+					backgroundColor: "#ffffff",
+					boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+					py: 1,
+				}}
+			>
 				<Toolbar>
-					<Typography>My Blog App</Typography>
+					<Typography
+						variant="h5"
+						component="div"
+						sx={{
+							fontWeight: 700,
+							color: "#1976d2",
+							letterSpacing: "0.5px",
+						}}
+					>
+						My Blog App
+					</Typography>
 					{isLogin && (
-						<Box display={"flex"} marginLeft={"auto"} marginRight={"auto"}>
+						<Box
+							display={"flex"}
+							marginLeft={"auto"}
+							marginRight={"auto"}
+							sx={{ gap: 2 }}
+						>
 							<Tabs
-								textColor="inherit"
+								textColor="primary"
+								indicatorColor="primary"
 								value={value}
 								onChange={(e, val) => setValue(val)}
 							>
-								<Tab label="Blogs" LinkComponent={Link} to="/blogs" />
-								<Tab label="My Blogs" LinkComponent={Link} to="/my-blogs" />
+								<Tab
+									label="Blogs"
+									LinkComponent={Link}
+									to="/blogs"
+									sx={{
+										fontWeight: 600,
+										textTransform: "none",
+										fontSize: "1rem",
+									}}
+								/>
+								<Tab
+									label="My Blogs"
+									LinkComponent={Link}
+									to="/my-blogs"
+									sx={{
+										fontWeight: 600,
+										textTransform: "none",
+										fontSize: "1rem",
+									}}
+								/>
 								<Tab
 									label="Create Blog"
 									LinkComponent={Link}
 									to="/create-blog"
+									sx={{
+										fontWeight: 600,
+										textTransform: "none",
+										fontSize: "1rem",
+									}}
 								/>
 							</Tabs>
 						</Box>
 					)}
-					<Box display={"flex"} marginLeft={"auto"}>
+					<Box display={"flex"} marginLeft={"auto"} sx={{ gap: 1 }}>
 						{!isLogin && (
 							<>
 								<Button
-									sx={{ margin: 1, color: "white" }}
+									variant="outlined"
+									sx={{
+										margin: 1,
+										color: "#1976d2",
+										borderColor: "#1976d2",
+										"&:hover": {
+											backgroundColor: "#1976d2",
+											color: "white",
+											borderColor: "#1976d2",
+										},
+									}}
 									LinkComponent={Link}
 									to="/login"
 								>
 									Login
 								</Button>
 								<Button
-									sx={{ margin: 1, color: "white" }}
+									variant="contained"
+									sx={{
+										margin: 1,
+										backgroundColor: "#1976d2",
+										"&:hover": {
+											backgroundColor: "#1565c0",
+										},
+									}}
 									LinkComponent={Link}
 									to="/register"
 								>
@@ -87,7 +148,20 @@ const Header = () => {
 							</>
 						)}
 						{isLogin && (
-							<Button onClick={handleLogout} sx={{ margin: 1, color: "white" }}>
+							<Button
+								variant="outlined"
+								onClick={handleLogout}
+								sx={{
+									margin: 1,
+									color: "#d32f2f",
+									borderColor: "#d32f2f",
+									"&:hover": {
+										backgroundColor: "#d32f2f",
+										color: "white",
+										borderColor: "#d32f2f",
+									},
+								}}
+							>
 								Logout
 							</Button>
 						)}

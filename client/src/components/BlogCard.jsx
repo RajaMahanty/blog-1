@@ -17,39 +17,70 @@ export default function BlogCard({
 	return (
 		<Card
 			sx={{
-				width: "40%",
-				margin: "auto",
-				mt: 2,
-				p: 2,
-				boxShadow: "5px 5px 10px #ccc",
+				width: "80%",
+				maxWidth: "800px",
+				margin: "2rem auto",
+				p: 3,
+				borderRadius: "12px",
+				boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+				transition: "transform 0.3s ease, box-shadow 0.3s ease",
 				":hover": {
-					boxShadow: "10px 10px 20px #ccc",
+					transform: "translateY(-5px)",
+					boxShadow: "0 8px 30px rgba(0, 0, 0, 0.15)",
 				},
+				backgroundColor: "#ffffff",
 			}}
 		>
 			<CardHeader
 				avatar={
-					<Avatar sx={{ bgcolor: red[500] }} aria-label="username">
+					<Avatar
+						sx={{
+							bgcolor: red[500],
+							width: 48,
+							height: 48,
+							fontSize: "1.2rem",
+						}}
+						aria-label="username"
+					>
 						{username ? username[0].toUpperCase() : "U"}
 					</Avatar>
 				}
-				title={title}
-				subheader={new Date(createdAt).toLocaleDateString(undefined, {
-					year: "numeric",
-					month: "long",
-					day: "numeric",
-				})}
+				title={
+					<Typography variant="h5" component="div" sx={{ fontWeight: 600 }}>
+						{title}
+					</Typography>
+				}
+				subheader={
+					<Typography variant="subtitle2" color="text.secondary">
+						{new Date(createdAt).toLocaleDateString(undefined, {
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+						})}
+					</Typography>
+				}
 			/>
 			<CardMedia
-				sx={{ objectFit: "contain" }}
+				sx={{
+					objectFit: "cover",
+					height: "300px",
+					borderRadius: "8px",
+					margin: "1rem 0",
+				}}
 				component="img"
-				height="194"
 				image={image}
 				alt="Blog image"
 			/>
 
 			<CardContent>
-				<Typography variant="body2" sx={{ color: "text.secondary" }}>
+				<Typography
+					variant="body1"
+					sx={{
+						color: "text.secondary",
+						lineHeight: 1.8,
+						fontSize: "1.1rem",
+					}}
+				>
 					{description}
 				</Typography>
 			</CardContent>

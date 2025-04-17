@@ -134,17 +134,20 @@ const Blogs = () => {
 						"& > *": {
 							breakInside: "avoid",
 							mb: 3,
+							height: "fit-content",
 						},
 					}}
 				>
 					{filteredBlogs.map((blog) => (
-						<Box key={blog._id}>
+						<Box key={blog._id} sx={{ height: "100%" }}>
 							<BlogCard
+								id={blog._id}
 								title={blog.title}
 								description={blog.description}
 								image={blog.image}
 								username={blog.user.username}
 								createdAt={blog.createdAt}
+								sx={{ height: "100%" }}
 							/>
 						</Box>
 					))}

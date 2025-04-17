@@ -134,12 +134,13 @@ const UserBlogs = () => {
 			) : (
 				<Box
 					sx={{
-						columnCount: { xs: 1, sm: 2, md: 3 },
-						columnGap: 3,
-						"& > *": {
-							breakInside: "avoid",
-							mb: 3,
+						display: "grid",
+						gridTemplateColumns: {
+							xs: "1fr",
+							sm: "repeat(2, 1fr)",
+							md: "repeat(3, 1fr)",
 						},
+						gap: 3,
 					}}
 				>
 					{filteredBlogs.map((blog) => (
@@ -150,6 +151,7 @@ const UserBlogs = () => {
 								image={blog.image}
 								username={username}
 								createdAt={blog.createdAt}
+								sx={{ height: "100%" }}
 							/>
 						</Box>
 					))}

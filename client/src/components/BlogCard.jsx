@@ -24,6 +24,7 @@ export default function BlogCard({
 				boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
 				transition: "all 0.3s ease",
 				backgroundColor: "background.paper",
+				height: "100%",
 				"&:hover": {
 					boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)",
 					transform: "translateY(-4px)",
@@ -33,8 +34,7 @@ export default function BlogCard({
 		>
 			<CardMedia
 				sx={{
-					height: 0,
-					paddingTop: "56.25%", // 16:9 aspect ratio
+					height: 200,
 					objectFit: "cover",
 					borderRadius: "12px 12px 0 0",
 				}}
@@ -42,7 +42,15 @@ export default function BlogCard({
 				image={image}
 				alt="Blog image"
 			/>
-			<CardContent sx={{ flexGrow: 1, p: 3 }}>
+			<CardContent
+				sx={{
+					flexGrow: 1,
+					p: 3,
+					display: "flex",
+					flexDirection: "column",
+					height: "calc(100% - 200px)", // Subtract image height
+				}}
+			>
 				<Typography
 					variant="h6"
 					component="h2"
@@ -55,6 +63,7 @@ export default function BlogCard({
 						WebkitLineClamp: 2,
 						WebkitBoxOrient: "vertical",
 						overflow: "hidden",
+						minHeight: "3.2em", // 2 lines of text
 					}}
 				>
 					{title}
@@ -69,6 +78,7 @@ export default function BlogCard({
 						WebkitBoxOrient: "vertical",
 						overflow: "hidden",
 						lineHeight: 1.6,
+						minHeight: "4.8em", // 3 lines of text
 					}}
 				>
 					{description}

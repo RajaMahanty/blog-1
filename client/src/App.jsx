@@ -10,6 +10,7 @@ import axios from "axios";
 // toast
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CreateBlog from "./components/CreateBlog";
 
 // Configuring base URL
 axios.defaults.baseURL = "http://localhost:8080/api/v1";
@@ -22,6 +23,7 @@ function App() {
 				<Route path="/" element={<Blogs />} />
 				<Route path="/blogs" element={<Blogs />} />
 				<Route path="/my-blogs" element={<UserBlogs />} />
+				<Route path="/create-blog" element={<CreateBlog />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 			</Routes>

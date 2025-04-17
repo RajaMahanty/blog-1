@@ -14,7 +14,6 @@ export default function BlogCard({
 	username,
 	createdAt,
 }) {
-	console.log(username);
 	return (
 		<Card
 			sx={{

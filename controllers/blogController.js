@@ -14,7 +14,7 @@ const getAllBlogsController = async (req, res) => {
 		return res.status(200).send({
 			success: true,
 			BlogCount: blogs.length,
-			message: "All Blogs lists",
+			message: "All Blogs lists", 
 			blogs,
 		});
 	} catch (error) {
@@ -199,8 +199,14 @@ const deleteBlogController = async (req, res) => {
 
 const userBlogController = async (req, res) => {
 	try {
-		const userBlog = await userModel.findById(req.params.id).populate("blogs");
-		if (!userBlog) {
+		const userBlogs = await userModel.findById(req.params.id).populate({
+			path: "blogs",
+			populate: {
+				path: "user",
+				select: "username",
+			},
+		});
+		if (!userBlogs) {
 			return res.status(404).send({
 				success: false,
 				message: "Blogs not found with this id",
@@ -209,7 +215,7 @@ const userBlogController = async (req, res) => {
 		return res.status(200).send({
 			success: true,
 			message: "user blogs",
-			userBlog,
+			userBlogs,
 		});
 	} catch (error) {
 		console.log(error);

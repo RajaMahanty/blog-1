@@ -50,6 +50,10 @@ const UserBlogs = () => {
 			blog.description.toLowerCase().includes(searchQuery.toLowerCase())
 	);
 
+	const handleDelete = (deletedBlogId) => {
+		setBlogs(blogs.filter((blog) => blog._id !== deletedBlogId));
+	};
+
 	if (isLoading) {
 		return <LoadingScreen />;
 	}
@@ -153,6 +157,7 @@ const UserBlogs = () => {
 								image={blog.image}
 								username={username}
 								createdAt={blog.createdAt}
+								onDelete={handleDelete}
 								sx={{ height: "100%" }}
 							/>
 						</Box>

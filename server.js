@@ -25,7 +25,7 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/blogs", blogRoutes);
 
 // listen
-app.listen(process.env.PORT || 8080, () => {
+app.listen(process.env.PORT || 8080, "0.0.0.0", () => {
 	console.log(
 		`Server running on ${process.env.DEV_MODE} in port ${process.env.PORT}`
 			.bgCyan

@@ -14,7 +14,8 @@ import CreateBlog from "./components/CreateBlog";
 import BlogDetails from "./pages/BlogDetails";
 
 // Configuring base URL
-axios.defaults.baseURL = "http://localhost:8080/api/v1";
+axios.defaults.baseURL = "http://172.168.13.129:8080/api/v1";
+// axios.defaults.baseURL = "http://localhost:8080/api/v1";
 
 function App() {
 	return (

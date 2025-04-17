@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	Box,
 	AppBar,
@@ -16,7 +16,7 @@ import {
 	useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authActions } from "../redux/store";
@@ -30,10 +30,23 @@ const Header = () => {
 	const isLogin = useSelector((state) => state.isLogin);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation();
 	const [value, setValue] = useState(0);
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+	// Synchronize tab value with current route
+	useEffect(() => {
+		const path = location.pathname;
+		if (path === "/blogs" || path === "/") {
+			setValue(0);
+		} else if (path === "/my-blogs") {
+			setValue(1);
+		} else if (path === "/create-blog") {
+			setValue(2);
+		}
+	}, [location.pathname]);
 
 	// handle logout
 	const handleLogout = () => {

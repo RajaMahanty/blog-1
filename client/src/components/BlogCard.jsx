@@ -8,6 +8,7 @@ import { red } from "@mui/material/colors";
 import { Box, IconButton } from "@mui/material";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 
 export default function BlogCard({
 	title,
@@ -19,6 +20,11 @@ export default function BlogCard({
 	id,
 	isUser,
 }) {
+	const navigate = useNavigate();
+	const handleEdit = async () => {
+		navigate(`/blog-details/${id}`);
+	};
+
 	return (
 		<Card
 			sx={{
@@ -66,6 +72,7 @@ export default function BlogCard({
 						}}
 					>
 						<IconButton
+							onClick={handleEdit}
 							size="small"
 							sx={{
 								transition: "all 0.2s ease",

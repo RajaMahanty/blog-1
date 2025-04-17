@@ -27,7 +27,7 @@ const UserBlogs = () => {
 	const getUserBlogs = async () => {
 		try {
 			setIsLoading(true);
-			const id = localStorage.getItem("userId");
+			const id = localStorage.getItem("userID");
 			const { data } = await axios.get(`/blogs/user-blog/${id}`);
 			if (data?.success) {
 				setBlogs(data?.userBlogs?.blogs || []);
@@ -146,6 +146,8 @@ const UserBlogs = () => {
 					{filteredBlogs.map((blog) => (
 						<Box key={blog._id}>
 							<BlogCard
+								id={blog._id}
+								isUser={localStorage.getItem("userID") === blog.user._id}
 								title={blog.title}
 								description={blog.description}
 								image={blog.image}

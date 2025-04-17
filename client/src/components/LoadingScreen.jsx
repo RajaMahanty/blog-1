@@ -1,9 +1,10 @@
 import React from "react";
+import { Box, Typography } from "@mui/material";
 
 const LoadingScreen = () => {
 	return (
-		<div
-			style={{
+		<Box
+			sx={{
 				position: "fixed",
 				top: 0,
 				left: 0,
@@ -17,43 +18,35 @@ const LoadingScreen = () => {
 				zIndex: 9999,
 			}}
 		>
-			<div
-				style={{
+			<Box
+				sx={{
 					width: 50,
 					height: 50,
-					position: "relative",
-				}}
-			>
-				<div
-					style={{
-						width: "100%",
-						height: "100%",
-						border: "4px solid #f3f3f3",
-						borderTop: "4px solid #3498db",
-						borderRadius: "50%",
-						animation: "spin 1s linear infinite",
-						"@keyframes spin": {
-							"0%": {
-								transform: "rotate(0deg)",
-							},
-							"100%": {
-								transform: "rotate(360deg)",
-							},
+					border: "4px solid #f3f3f3",
+					borderTop: "4px solid #3498db",
+					borderRadius: "50%",
+					animation: "spin 1s linear infinite",
+					"@keyframes spin": {
+						"0%": {
+							transform: "rotate(0deg)",
 						},
-					}}
-				></div>
-			</div>
-			<p
-				style={{
-					marginTop: 20,
-					fontSize: "1.2rem",
-					color: "#333",
+						"100%": {
+							transform: "rotate(360deg)",
+						},
+					},
+				}}
+			/>
+			<Typography
+				variant="h6"
+				sx={{
+					mt: 2,
+					color: "text.primary",
 					fontWeight: 500,
 				}}
 			>
 				Loading...
-			</p>
-		</div>
+			</Typography>
+		</Box>
 	);
 };
 

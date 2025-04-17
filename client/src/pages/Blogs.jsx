@@ -142,6 +142,7 @@ const Blogs = () => {
 						<Box key={blog._id} sx={{ height: "100%" }}>
 							<BlogCard
 								id={blog._id}
+								isUser={localStorage.getItem("userID") === blog.user._id}
 								title={blog.title}
 								description={blog.description}
 								image={blog.image}

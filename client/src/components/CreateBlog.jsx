@@ -29,7 +29,7 @@ const CreateBlog = () => {
 		e.preventDefault();
 		try {
 			setIsLoading(true);
-			const user = localStorage.getItem("userId");
+			const user = localStorage.getItem("userID");
 			const { data } = await axios.post("/blogs/create-blog", {
 				title: inputs.title,
 				description: inputs.description,

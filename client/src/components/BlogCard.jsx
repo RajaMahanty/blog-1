@@ -5,7 +5,9 @@ import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function BlogCard({
 	title,
@@ -14,6 +16,8 @@ export default function BlogCard({
 	username,
 	createdAt,
 	sx,
+	id,
+	isUser,
 }) {
 	return (
 		<Card
@@ -32,16 +36,60 @@ export default function BlogCard({
 				...sx,
 			}}
 		>
-			<CardMedia
-				sx={{
-					height: 200,
-					objectFit: "cover",
-					borderRadius: "12px 12px 0 0",
-				}}
-				component="img"
-				image={image}
-				alt="Blog image"
-			/>
+			<Box sx={{ position: "relative" }}>
+				<CardMedia
+					sx={{
+						height: 200,
+						objectFit: "cover",
+						borderRadius: "12px 12px 0 0",
+					}}
+					component="img"
+					image={image}
+					alt="Blog image"
+				/>
+				{isUser && (
+					<Box
+						sx={{
+							position: "absolute",
+							top: 8,
+							left: 8,
+							display: "flex",
+							gap: 1,
+							backgroundColor: "rgba(255, 255, 255, 0.8)",
+							borderRadius: 1,
+							p: 0.5,
+							transition: "all 0.2s ease",
+							"&:hover": {
+								backgroundColor: "rgba(255, 255, 255, 0.95)",
+								transform: "scale(1.05)",
+							},
+						}}
+					>
+						<IconButton
+							size="small"
+							sx={{
+								transition: "all 0.2s ease",
+								"&:hover": {
+									color: "green",
+								},
+							}}
+						>
+							<ModeEditIcon fontSize="small" />
+						</IconButton>
+						<IconButton
+							size="small"
+							sx={{
+								transition: "all 0.2s ease",
+								"&:hover": {
+									color: "error.main",
+								},
+							}}
+						>
+							<DeleteIcon fontSize="small" />
+						</IconButton>
+					</Box>
+				)}
+			</Box>
 			<CardContent
 				sx={{
 					flexGrow: 1,

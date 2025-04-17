@@ -11,9 +11,11 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import LoadingScreen from "./LoadingScreen";
 
 const CreateBlog = () => {
 	const navigate = useNavigate();
+	const [isLoading, setIsLoading] = useState(false);
 
 	const [inputs, setInputs] = useState({
 		title: "",
@@ -25,6 +27,7 @@ const CreateBlog = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			setIsLoading(true);
 			const user = localStorage.getItem("userId");
 			const { data } = await axios.post("/blogs/create-blog", {
 				title: inputs.title,
@@ -40,6 +43,8 @@ const CreateBlog = () => {
 		} catch (error) {
 			toast.error("Error Occured Creating Blog!");
 			console.log(error);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -50,6 +55,10 @@ const CreateBlog = () => {
 			[e.target.name]: e.target.value,
 		}));
 	};
+
+	if (isLoading) {
+		return <LoadingScreen />;
+	}
 
 	return (
 		<Container maxWidth="md" sx={{ py: 4 }}>

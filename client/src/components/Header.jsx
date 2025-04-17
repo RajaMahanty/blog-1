@@ -63,7 +63,7 @@ const Header = () => {
 							letterSpacing: "0.5px",
 						}}
 					>
-						My Blog App
+						Bleggar
 					</Typography>
 					{isLogin && (
 						<Box
